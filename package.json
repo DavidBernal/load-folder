@@ -1,0 +1,25 @@
+{
+  "name": "load-folder",
+  "version": "1.0.0",
+  "description": "Load a folder as an object",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidBernal/load-folder.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "David Bernal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidBernal/load-folder/issues"
+  },
+  "homepage": "https://github.com/DavidBernal/load-folder#readme",
+  "dependencies": {
+    "parent-module": "^0.1.0"
+  }
+}
