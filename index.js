@@ -11,7 +11,6 @@ function loadFolder(options, route){
   respect = (options && options.respect) || respect;
   format = (options && options.format) || format;
   subextensions = (options && options.subextensions === false ? false  : subextensions);
-  console.log(subextensions);
   routePath = route || path.join(path.dirname(parentModule()), '/');
   files = loadFiles(routePath, options);
 
