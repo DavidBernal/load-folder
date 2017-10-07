@@ -6,11 +6,13 @@ var parentModule = require('parent-module');
 var respect = false;
 var format = false;
 var subextensions = true;
+var onlyJS = false;
 
 function loadFolder(options, route){
   respect = (options && options.respect) || respect;
   format = (options && options.format) || format;
   subextensions = (options && options.subextensions === false ? false  : subextensions);
+  onlyJS = (options && options.onlyJS) || onlyJS;
   routePath = route || path.join(path.dirname(parentModule()), '/');
   files = loadFiles(routePath, options);
 
@@ -61,7 +63,7 @@ function loadFiles(routePath, options){
       files.push(addModule(file, subfolder));
     }
 
-    if (filetype.isFile() && file.substr(file.lastIndexOf('.')) === '.js' ) {
+    if (filetype.isFile() && ( !onlyJS || (onlyJS && file.substr(file.lastIndexOf('.')) !== '.js' ))){
       let filename = removeExtension(file);
       let mod = require(filePath);
       files.push(addModule(filename, mod));
