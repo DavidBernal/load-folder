@@ -5,10 +5,13 @@ var path = require('path');
 var parentModule = require('parent-module');
 var respect = false;
 var format = false;
+var subextensions = true;
 
 function loadFolder(options, route){
   respect = (options && options.respect) || respect;
   format = (options && options.format) || format;
+  subextensions = (options && options.subextensions === false ? false  : subextensions);
+  console.log(subextensions);
   routePath = route || path.join(path.dirname(parentModule()), '/');
   files = loadFiles(routePath, options);
 
@@ -21,6 +24,9 @@ function loadFolder(options, route){
 };
 
 function addModule(filename, mod){
+  if (!subextensions) {
+    filename = removeExtension(filename);
+  }
   if (format) {
     filename = formatFilename(filename)
   }
@@ -57,13 +63,18 @@ function loadFiles(routePath, options){
     }
 
     if (filetype.isFile() && file.substr(file.lastIndexOf('.')) === '.js' ) {
-      let filename = file.substr(0, file.lastIndexOf('.'));
+      let filename = removeExtension(file);
       let mod = require(filePath);
       files.push(addModule(filename, mod));
     }
   });
 
   return files;
+}
+
+function removeExtension(filename){
+  let position = filename.lastIndexOf('.');
+  return position === -1 ? filename : filename.substr(0, position);
 }
 
 module.exports = loadFolder;
