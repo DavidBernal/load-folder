@@ -9,11 +9,13 @@ var subextensions = true;
 var onlyJS = false;
 
 function loadFolder(options, route){
-  respect = (options && options.respect) || respect;
-  format = (options && options.format) || format;
-  subextensions = (options && options.subextensions === false ? false  : subextensions);
-  onlyJS = (options && options.onlyJS) || onlyJS;
+  respect = (options && options.respect) || false;
+  format = (options && options.format) || false;
+  subextensions = (options && options.subextensions === false ? false  : true);
+  onlyJS = (options && options.onlyJS) || false;
   routePath = route || path.join(path.dirname(parentModule()), '/');
+
+  console.log(routePath);
   files = loadFiles(routePath, options);
 
   // join all files in a single object
