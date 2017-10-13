@@ -14,8 +14,6 @@ function loadFolder(options, route){
   subextensions = (options && options.subextensions === false ? false  : true);
   onlyJS = (options && options.onlyJS) || false;
   routePath = route || path.join(path.dirname(parentModule()), '/');
-
-  console.log(routePath);
   files = loadFiles(routePath, options);
 
   // join all files in a single object
