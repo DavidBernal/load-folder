@@ -1,6 +1,6 @@
 # Install
 
-`npm install https://github.com/DavidBernal/load-folder`
+`npm install load-folder`
 
 
 # Usage example
